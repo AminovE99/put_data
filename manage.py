@@ -7,7 +7,7 @@ from fastapi import Request
 app = FastAPI()
 
 
-@app.post("/data")
+@app.get("/data")
 async def get_data(request: Request):
     with open('data.csv', 'a', newline='') as f:
         data = await request.json()

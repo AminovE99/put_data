@@ -7,12 +7,12 @@ from fastapi import Request
 app = FastAPI()
 
 
-@app.get("/data")
-async def get_data(request: Request):
+@app.get("/data/{account_number}/{phone_number}")
+async def get_data(account_number, phone_number):
     with open('data.csv', 'a', newline='') as f:
-        data = await request.json()
+        data = {'account_number': account_number, 'phone_number': phone_number}
         f.write(f'{json.dumps(data)}\n')
-    return await request.json()
+    return 'ok'
 
 
 if __name__ == "__main__":

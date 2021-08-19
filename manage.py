@@ -2,15 +2,14 @@ import json
 
 import uvicorn as uvicorn
 from fastapi import FastAPI
-from fastapi import Request
 
 app = FastAPI()
 
 
-@app.get("/data/{account_number}/{phone_number}")
-async def get_data(account_number, phone_number):
+@app.get("/data/{account_number}/{phone_number}/{name}")
+async def get_data(account_number, phone_number, name):
     with open('data.csv', 'a', newline='') as f:
-        data = {'account_number': account_number, 'phone_number': phone_number}
+        data = {'account_number': account_number, 'phone_number': phone_number, 'name': name}
         f.write(f'{json.dumps(data)}\n')
     return 'ok'
 
